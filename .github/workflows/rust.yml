@@ -39,12 +39,12 @@ jobs:
           body: "This is my release text"
   export-docker:
     runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@master
-        - name: Publish to Registry
-          uses: elgohr/Publish-Docker-Github-Action@master
-          with:
-            name: izerobit/hello-rust/image
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-            registry: docker.pkg.github.com
+    steps:
+      - uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: izerobit/hello-rust/image
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: docker.pkg.github.com
