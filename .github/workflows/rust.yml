@@ -18,6 +18,15 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/hello-rust
+        asset_name: mything
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "This is my release text"
     - name: Run tests
       run: cargo test --verbose
 #     - name: Run docker
@@ -28,7 +37,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        file: /target/release/hello-rust
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
